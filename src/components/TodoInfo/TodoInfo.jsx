@@ -1,9 +1,13 @@
 import { UserInfo } from '../UserInfo/UserInfo';
 
-export const TodoInfo = ({ todo }) => (
-  <article className="TodoInfo TodoInfo--completed">
-    <h2 className="TodoInfo__title">{todo.title}</h2>
+export const TodoInfo = ({ todo }) => {
+  const doneTasks = todo.completed ? 'TodoInfo--completed' : '';
 
-    <UserInfo user={todo.user} key={todo.user.id} />
-  </article>
-);
+  return (
+    <article className={`TodoInfo ${doneTasks}`}>
+      <h2 className="TodoInfo__title">{todo.title}</h2>
+
+      {todo.user && <UserInfo user={todo.user} key={todo.user.id} />}
+    </article>
+  );
+};
